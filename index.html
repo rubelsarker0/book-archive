@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book archive</title>
+    <!-- Bootstrap style link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- Custom Css link -->
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <!-- Header part start  -->
+    <header class="pt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-8 mx-auto">
+                    <div class="input-group mb-3">
+                        <input id="user-field" type="text" class="form-control" placeholder="Search Your Favorite Books"
+                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button onclick="loadBooksData()" class="btn btn-primary" type="button">Button</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header part end  -->
+    <!-- main part start -->
+    <main>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h4>About <span id="total-results">00</span> results (0.41 seconds)</h4>
+                    </div>
+                </div>
+                <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3">
+
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- main part end -->
+    <!-- footer part start -->
+    <footer class="pb-3">
+
+    </footer>
+    <!-- footer part end -->
+
+    <!-- Bootstrap javascript link -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+    <!-- Custom Javascript link -->
+    <script src="js/book.js"></script>
+</body>
+
+</html>
