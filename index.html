@@ -13,16 +13,17 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
-<body>
+<body style="background-color: #f0f2f5;">
     <!-- Header part start  -->
     <header class="pt-4">
         <div class="container">
             <div class="row">
                 <div class="col-8 mx-auto">
                     <div class="input-group mb-3">
-                        <input id="user-field" type="text" class="form-control" placeholder="Search Your Favorite Books"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button onclick="loadBooksData()" class="btn btn-primary" type="button">Button</button>
+                        <input id="user-input-field" type="text" class="form-control"
+                            placeholder="Search Your Favorite Books" aria-label="Recipient's username"
+                            aria-describedby="button-addon2">
+                        <button onclick="userInput()" class="btn btn-primary" type="button">SEARCH</button>
                     </div>
                 </div>
             </div>
@@ -35,11 +36,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <h4>About <span id="total-results">00</span> results (0.41 seconds)</h4>
+                        <!-- loader -->
+                        <div id="spinner" class="d-none text-center">
+                            <div class="spinner-grow text-danger" style="width:5rem; height: 5rem;" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                        <h4 id="total-result-found" class="d-none"></h4>
                     </div>
                 </div>
-                <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3">
-
+                <div id="books-container" class="row row-cols-1 row-cols-lg-3 row-cols-md-3 g-4">
                 </div>
             </div>
         </section>
