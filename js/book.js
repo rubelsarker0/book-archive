@@ -1,18 +1,28 @@
+const userInputField = document.getElementById('user-input-field');
+
+const getElement = (id) => {
+	return document.getElementById(id);
+};
+
 // getting user input value from input field
 const userInput = () => {
-	const userInputField = document.getElementById('user-input-field');
 	let userInputValue = userInputField.value;
 	loadBooksData(userInputValue);
 	userInputField.value = '';
 };
 
+userInputField.addEventListener('keyup', (event) => {
+	if (event.keyCode === 13 || event.keyCode === 'Enter') {
+		userInput();
+	}
+});
 // calling the openlibrary api to load the data
 const loadBooksData = async (userInput) => {
 	try {
-		elementDisplayBlock('spinner');
-		const booksContainer = document.getElementById('books-container');
+		showSpinner('spinner');
+		const booksContainer = getElement('books-container');
 		booksContainer.textContent = '';
-		document.getElementById('total-result-found').classList.add('d-none');
+		getElement('total-result-found').classList.add('d-none');
 		if (userInput !== '') {
 			const bookUrl = `http://openlibrary.org/search.json?q=${userInput}`;
 			const response = await fetch(bookUrl);
@@ -21,31 +31,32 @@ const loadBooksData = async (userInput) => {
 		} else {
 			errorMessage(`No Result found! try again....!!`);
 		}
-		elementDisplayNone('spinner');
+		hideSpinner('spinner');
 	} catch (error) {
 		console.log(error);
 	}
 };
 
 // show and hide spinner
-const elementDisplayNone = (id) => {
-	const spinner = document.getElementById(id);
+const hideSpinner = (id) => {
+	const spinner = getElement(id);
 	spinner.classList.add('d-none');
 };
-const elementDisplayBlock = (id) => {
-	const spinner = document.getElementById(id);
+const showSpinner = (id) => {
+	const spinner = getElement(id);
 	spinner.classList.remove('d-none');
 };
 // displaying book details
 
 const displayBookInfo = (bookInfo) => {
-	const booksContainer = document.getElementById('books-container');
+	const booksContainer = getElement('books-container');
 	booksContainer.textContent = '';
 	totalSearchResultFound(bookInfo, booksContainer);
 };
 
+// total search result
 const totalSearchResultFound = (bookInfo, booksContainer) => {
-	const totalResults = document.getElementById('total-result-found');
+	const totalResults = getElement('total-result-found');
 	if (bookInfo.docs.length > 0) {
 		totalResults.classList.remove('d-none', 'text-center', 'text-danger');
 		totalResults.innerText = `#Result found: ${bookInfo.numFound}`;
@@ -60,15 +71,17 @@ const totalSearchResultFound = (bookInfo, booksContainer) => {
 	}
 };
 
+//Error mess function
 const errorMessage = (errorMsg) => {
-	const totalContainer = document.getElementById('total-result-found');
+	const totalContainer = getElement('total-result-found');
 	totalContainer.classList.remove('d-none');
 	totalContainer.classList.add('text-center', 'text-danger');
 	totalContainer.innerText = errorMsg;
 };
 
+//generating book HTML to display details
 const generateBookHtml = (book) => {
-	console.log(book);
+	// console.log(book);
 	const {
 		cover_i,
 		title,
@@ -81,7 +94,7 @@ const generateBookHtml = (book) => {
 		language,
 	} = book;
 
-	// give the condition
+	//conditions to check values
 	const bookImgUrl = `https://covers.openlibrary.org/b/id/${cover_i}-M.jpg`;
 	const bookTitle = title ? title : title_suggest;
 	const authorName = book.hasOwnProperty('author_name')
