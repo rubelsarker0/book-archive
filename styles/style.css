@@ -26,3 +26,29 @@ body {
 	height: 400px;
 	object-fit: cover;
 }
+
+/* Spinner style  */
+#spinner {
+	position: fixed;
+	z-index: 1031;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.spinner-border {
+	width: 5rem;
+	height: 5rem;
+}
+
+/* icon style  */
+.border-primary {
+	border-color: #008cff !important;
+}
+
+.py-2 {
+	padding-top: 0.5rem !important;
+	padding-bottom: 0.5rem !important;
+}
+.border-5 {
+	border-width: 5px !important;
+}
